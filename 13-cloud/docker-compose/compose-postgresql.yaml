@@ -1,0 +1,20 @@
+services:
+  # PostgreSQL
+  postgres:
+    hostname: postgres
+    container_name: postgres
+    image: postgres
+    platform: linux/amd64
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_USER: admin
+      POSTGRES_DB: users_db
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: pg_isready
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
