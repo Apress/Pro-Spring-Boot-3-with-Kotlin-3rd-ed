@@ -1,0 +1,8 @@
+curl -X GET http://localhost:8080/users
+
+curl -X POST -d '{"email":"test@test.com","name":"Linda"}' --header "Content-Type: application/json" \
+http://localhost:8080/users
+
+curl -X GET http://localhost:8080/users/test@test.com
+
+
