@@ -1,0 +1,43 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.3'
+	id 'io.spring.dependency-management' version '1.1.4'
+	id 'org.jetbrains.kotlin.jvm' version '2.0.20-RC'
+	id "org.jetbrains.kotlin.plugin.spring" version "2.0.20-RC" // simplifies spring proxying
+}
+
+group = 'com.apress'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+	implementation "org.jetbrains.kotlin:kotlin-reflect"
+
+    //Lombok
+    //compileOnly 'org.projectlombok:lombok'
+    //annotationProcessor 'org.projectlombok:lombok'
+    //annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+//    kotlin {
+//	    jvmToolchain(17)
+//    }
+tasks.withType(KotlinCompile) {
+	kotlinOptions {
+		freeCompilerArgs = ['-Xjsr305=strict']
+		jvmTarget = '17'
+	}
+}
